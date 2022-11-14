@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81033680291B9A1C00E55A83 /* NoteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8103367D291B9A1C00E55A83 /* NoteModel.xcdatamodeld */; };
-		81033683291B9A7000E55A83 /* NoteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81033681291B9A7000E55A83 /* NoteModel.xcdatamodeld */; };
+		81033683291B9A7000E55A83 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */; };
 		81033685291C25FF00E55A83 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81033684291C25FF00E55A83 /* LandingPage.swift */; };
+		813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */; };
 		8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */; };
 		81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */; };
 		81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FF52918DEDE00349EC5 /* ContentView.swift */; };
@@ -40,10 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8103367E291B9A1C00E55A83 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
-		8103367F291B9A1C00E55A83 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		81033684291C25FF00E55A83 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
+		813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
+		813C1B202922D5500090D747 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		81DE3FF02918DEDE00349EC5 /* Notoday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notoday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotodayApp.swift; sourceTree = "<group>"; };
@@ -121,10 +121,10 @@
 				81033684291C25FF00E55A83 /* LandingPage.swift */,
 				81DE40262918E48F00349EC5 /* HomePage.swift */,
 				81DE40282918E4CC00349EC5 /* NotePage.swift */,
-				81033681291B9A7000E55A83 /* NoteModel.xcdatamodeld */,
+				81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */,
 				81DE3FF72918DEEA00349EC5 /* Assets.xcassets */,
 				81DE3FF92918DEEA00349EC5 /* Preview Content */,
-				8103367D291B9A1C00E55A83 /* NoteModel.xcdatamodeld */,
+				813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */,
 			);
 			path = Notoday;
 			sourceTree = "<group>";
@@ -286,12 +286,12 @@
 			files = (
 				8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */,
 				81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */,
-				81033683291B9A7000E55A83 /* NoteModel.xcdatamodeld in Sources */,
+				81033683291B9A7000E55A83 /* Notoday.xcdatamodeld in Sources */,
 				81DE40292918E4CC00349EC5 /* NotePage.swift in Sources */,
 				81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */,
 				81DE40272918E49000349EC5 /* HomePage.swift in Sources */,
 				81033685291C25FF00E55A83 /* LandingPage.swift in Sources */,
-				81033680291B9A1C00E55A83 /* NoteModel.xcdatamodeld in Sources */,
+				813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,24 +618,24 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8103367D291B9A1C00E55A83 /* NoteModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8103367E291B9A1C00E55A83 /* Notoday.xcdatamodel */,
-				8103367F291B9A1C00E55A83 /* NoteModel.xcdatamodel */,
-			);
-			currentVersion = 8103367E291B9A1C00E55A83 /* Notoday.xcdatamodel */;
-			path = NoteModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		81033681291B9A7000E55A83 /* NoteModel.xcdatamodeld */ = {
+		81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */,
 			);
 			currentVersion = 81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */;
-			path = NoteModel.xcdatamodeld;
+			path = Notoday.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */,
+				813C1B202922D5500090D747 /* NoteModel.xcdatamodel */,
+			);
+			currentVersion = 813C1B202922D5500090D747 /* NoteModel.xcdatamodel */;
+			path = Notoday.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

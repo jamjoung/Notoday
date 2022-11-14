@@ -13,7 +13,7 @@ class CoreDataHelper {
     static let shared: CoreDataHelper = CoreDataHelper()
     
     private init() {
-        persistentContainer = NSPersistentContainer(name: "NoteModel")
+        persistentContainer = NSPersistentContainer(name: "Notoday")
         persistentContainer.loadPersistentStores {
             description, error in
             if let error = error {
