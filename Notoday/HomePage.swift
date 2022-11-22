@@ -16,7 +16,6 @@ struct NoteCell : View {
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.timeStyle = .short
         return formatter
     }()
     
@@ -32,6 +31,7 @@ struct NoteCell : View {
             Text(dateFormatter.string(from: note.noteTimestamp!))
                 .font(.footnote)
         }.padding(8)
+        
     }
 }
 
@@ -59,7 +59,6 @@ struct HomePage: View {
 
     
     var body: some View {
-        NavigationView{
             List {
                 Text("Testing:")
                 ForEach(allNotes) {note in
@@ -77,7 +76,7 @@ struct HomePage: View {
             }
         }
     }
-}
+
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {

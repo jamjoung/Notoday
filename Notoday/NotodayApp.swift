@@ -10,10 +10,10 @@ import SwiftUI
 @main
 struct NotodayApp: App {
     let persistentContainer = CoreDataHelper.shared.persistentContainer
-
+        
     var body: some Scene {
         WindowGroup {
-            NotePage()
+            ContentView()
                 .environment(\.managedObjectContext, persistentContainer.viewContext)
         }
     }

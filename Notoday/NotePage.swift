@@ -36,6 +36,7 @@ struct NotePage: View {
             try viewContext.save()
             print(newNote.noteTitle)
             print("Note saved.")
+            noteCreatedToday=true
            
             
         }
@@ -45,7 +46,6 @@ struct NotePage: View {
     }
     
     var body: some View {
-        NavigationView{
             VStack{
                 Form{
                     Section(header: Text("Note Title")){
@@ -75,7 +75,7 @@ struct NotePage: View {
             }
         }
     }
-}
+
 
 struct NotePage_Previews: PreviewProvider {
     static var previews: some View {

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import CoreData
 
+
+
 struct LandingPage: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var noteText: String = "test"
