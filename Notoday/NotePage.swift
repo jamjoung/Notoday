@@ -10,6 +10,37 @@ import Foundation
 import SwiftUI
 import CoreData
 
+
+enum Emotion: String, Identifiable, CaseIterable {
+    
+    var id: UUID {
+        return UUID()
+    }
+    
+    case happy = "Happy"
+    case satisfied = "Satisfied"
+    case neutral = "Neutral"
+    case tired = "Tired"
+    case upset = "Upset"
+}
+
+extension Emotion {
+    var title: String {
+        switch self {
+            case .happy:
+                return "Happy"
+            case .satisfied:
+                return "Satisfied"
+            case .neutral:
+                return "Neutral"
+            case .tired:
+                return "Tired"
+            case .upset:
+                return "Upset"
+        }
+    }
+}
+
 struct NotePage: View {
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -24,6 +55,24 @@ struct NotePage: View {
     
     let emotions = ["Happy", "Satisfied", "Neutral", "Tired", "Upset"]
     
+    private func styleEmotions(_ value: String) -> Color {
+            let emotion = Emotion(rawValue: value)
+            
+            switch emotion {
+                case .happy:
+                    return Color.green
+                case .satisfied:
+                    return Color.orange
+                case .neutral:
+                    return Color.red
+                case .tired:
+                    return Color.blue
+                case .upset:
+                    return Color.purple
+                default:
+                    return Color.black
+            }
+        }
 
     func saveNote() {
         let newNote = Note(context:viewContext)
