@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81033683291B9A7000E55A83 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */; };
 		81033685291C25FF00E55A83 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81033684291C25FF00E55A83 /* LandingPage.swift */; };
 		813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */; };
 		8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */; };
@@ -40,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		81033684291C25FF00E55A83 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
 		813C1B202922D5500090D747 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				81033684291C25FF00E55A83 /* LandingPage.swift */,
 				81DE40262918E48F00349EC5 /* HomePage.swift */,
 				81DE40282918E4CC00349EC5 /* NotePage.swift */,
-				81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */,
 				81DE3FF72918DEEA00349EC5 /* Assets.xcassets */,
 				81DE3FF92918DEEA00349EC5 /* Preview Content */,
 				813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */,
@@ -286,7 +283,6 @@
 			files = (
 				8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */,
 				81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */,
-				81033683291B9A7000E55A83 /* Notoday.xcdatamodeld in Sources */,
 				81DE40292918E4CC00349EC5 /* NotePage.swift in Sources */,
 				81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */,
 				81DE40272918E49000349EC5 /* HomePage.swift in Sources */,
@@ -618,16 +614,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		81033681291B9A7000E55A83 /* Notoday.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */,
-			);
-			currentVersion = 81033682291B9A7000E55A83 /* NoteModel.xcdatamodel */;
-			path = Notoday.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

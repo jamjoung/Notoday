@@ -9,6 +9,24 @@ import Foundation
 import SwiftUI
 import CoreData
 
+private func styleEmotions(_ value: String) -> Color {
+        switch value {
+            case "Happy":
+                return Color.green
+            case "Satisfied":
+                return Color.orange
+            case "Neutral":
+                return Color.yellow
+            case "Tired":
+                return Color.blue
+            case "Upset":
+                return Color.red
+            default:
+                return Color.purple
+        }
+    }
+
+
 struct NoteCell : View {
     
     @State var note: Note
@@ -69,7 +87,7 @@ struct HomePage: View {
                                 Text("Title: \(note.noteTitle ?? "")")
                                 Text("Text: \(note.noteText ?? "")")
                                     .padding()
-                                               }
+                                               } .background(styleEmotions(note.noteEmotion ?? ""))
                         }
                         
                     }
