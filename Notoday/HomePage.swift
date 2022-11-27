@@ -31,6 +31,7 @@ struct NoteCell : View {
             Text(dateFormatter.string(from: note.noteTimestamp!))
                 .font(.footnote)
         }.padding(8)
+           
         
     }
 }

@@ -45,7 +45,7 @@ struct NotePage: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var selectedIndex = 0
+    @State var selectedEmotion: Emotion = .neutral
     @State var text = ""
     @State var title = ""
     @State private var goHome: Bool = false
@@ -64,13 +64,13 @@ struct NotePage: View {
                 case .satisfied:
                     return Color.orange
                 case .neutral:
-                    return Color.red
+                    return Color.yellow
                 case .tired:
                     return Color.blue
                 case .upset:
-                    return Color.purple
+                    return Color.red
                 default:
-                    return Color.black
+                    return Color.purple
             }
         }
 
@@ -101,12 +101,14 @@ struct NotePage: View {
                         TextField("Enter Title", text: $title)
                     }
                         Section(header: Text("Select Emotion")){
-                            Picker(selection: $selectedIndex, label: Text("Emotion")){
-                                ForEach(0 ..< emotions.count){
-                                    Text(self.emotions[$0]).tag($0)
+                            Picker(selection: $selectedEmotion, label: Text("Emotion")){
+                                ForEach(Emotion.allCases){emotion in Text(emotion.title).tag(emotion)
                                 }
-                            }
+                                
+
+                            }.background(styleEmotions(selectedEmotion.title))
                         }
+                    
                     TextField("Write about your day!", text: $text, axis: .vertical)
                         .lineLimit(15, reservesSpace:true)
                 }
