@@ -38,17 +38,26 @@ struct NoteCell : View {
     }()
     
     var body: some View {
-        return VStack(alignment: .leading) {
-            Text(note.noteTitle!)
-                .font(.headline)
+        return VStack(spacing: 20) {
             
+                Text(dateFormatter.string(from: note.noteTimestamp!))
+                    .font(.footnote)
+                    
+                Text(note.noteTitle!)
+                    .font(.headline)
+                    
+            Divider()
+            Text(note.noteEmotion!)
+                .foregroundColor(styleEmotions(note.noteEmotion ?? ""))
+                .font(.subheadline)
+                .lineLimit(1)
+                .padding(10)
+            Divider()
             Text(note.noteText!)
                 .font(.subheadline)
-                .lineLimit(3)
-            
-            Text(dateFormatter.string(from: note.noteTimestamp!))
-                .font(.footnote)
-        }.padding(8)
+                .padding(10)
+            Spacer()
+        }
            
         
     }
@@ -81,16 +90,16 @@ struct HomePage: View {
             List {
                 Text("Testing:")
                 ForEach(allNotes) {note in
-                    HStack {
                         VStack{
                             NavigationLink(destination: NoteCell(note: note)) {
-                                Text("Title: \(note.noteTitle ?? "")")
-                                Text("Text: \(note.noteText ?? "")")
-                                    .padding()
-                                               } .background(styleEmotions(note.noteEmotion ?? ""))
+                                VStack(alignment:.leading){
+                                    Text("Title: \(note.noteTitle ?? "")")
+                                    Text("Text: \(note.noteText ?? "")")
+                                        .lineLimit(3)
+                                                   } .background(styleEmotions(note.noteEmotion ?? ""))
+                                }
+                                
                         }
-                        
-                    }
                 }.onDelete(perform: deleteNote)
             }
         }
