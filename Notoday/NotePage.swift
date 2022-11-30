@@ -40,24 +40,41 @@ import CoreData
 //        }
 //    }
 //}
-private func styleEmotions(_ value: String) -> Color {
+
+extension Color {
+    static let happyColor = Color(red: 255/255.0, green: 219/255.0, blue: 112/255.0)
+    static let satisfiedColor = Color(red: 153/255.0, green: 217/255.0, blue: 140/255.0)
+    static let neutralColor = Color(red: 82/255.0, green: 182/255.0, blue: 154/255.0)
+    static let tiredColor = Color(red: 22/255.0, green: 138/255.0, blue: 173/255.0)
+    static let upsetColor = Color(red: 35/255.0, green: 111/255.0, blue: 168/255.0)
+}
+
+
+
+enum styleEmotions: String, CaseIterable{
 //        let emotion = Emotion(rawValue: value)
-        
-        switch value {
-            case "Happy":
-                return Color.green
-            case "Satisfied":
-                return Color.orange
-            case "Neutral":
-                return Color.yellow
-            case "Tired":
-                return Color.blue
-            case "Upset":
-                return Color.red
-            default:
-                return Color.purple
+    case Happy
+    case Satisfied
+    case Neutral
+    case Tired
+    case Upset
+    var emotionColor: Color{
+        switch self {
+        case .Happy:
+            return Color.happyColor
+        case .Satisfied:
+            return Color.satisfiedColor
+        case .Neutral:
+            return Color.neutralColor
+        case .Tired:
+            return Color.tiredColor
+        case .Upset:
+            return Color.upsetColor
+        default:
+            return Color.neutralColor
         }
     }
+}
 
 struct NotePage: View {
     
@@ -85,8 +102,8 @@ struct NotePage: View {
         newNote.noteEmotion = self.emotions[selectedIndex]
         do {
             try viewContext.save()
-            print(newNote.noteTitle)
-            print(newNote.noteEmotion)
+            print(newNote.noteTitle!)
+            print(newNote.noteEmotion!)
             print("Note saved.")
             noteCreatedToday=true
            
@@ -107,25 +124,23 @@ struct NotePage: View {
                             Picker(selection: $selectedIndex, label: Text("Emotion")){
                                 ForEach(0 ..< emotions.count){ Text(self.emotions[$0]).tag($0)
                                 }
-                            }.background(styleEmotions(emotions[selectedIndex]))
+                            }.listRowBackground(styleEmotions(rawValue: emotions[selectedIndex])!.emotionColor)
                         }
                     
                     TextField("Write about your day!", text: $text, axis: .vertical)
                         .lineLimit(15, reservesSpace:true)
                 }
                 
-                NavigationLink(destination: HomePage(), isActive: $goHome)
-                {
-                    Button(action: {
-                        saveNote()
-                        goHome = true
-                    }){
-                        Text("Save Note")
-                    }
-                    
+                Button {
+                    goHome = true
+                    saveNote()
+                } label: {
+                    Text("Save Note")
+                }
+            }.navigationDestination(isPresented: $goHome) {
+                              HomePage()
                 }
             }
-        }
     }
 
 

@@ -9,22 +9,8 @@ import Foundation
 import SwiftUI
 import CoreData
 
-private func styleEmotions(_ value: String) -> Color {
-        switch value {
-            case "Happy":
-                return Color.green
-            case "Satisfied":
-                return Color.orange
-            case "Neutral":
-                return Color.yellow
-            case "Tired":
-                return Color.blue
-            case "Upset":
-                return Color.red
-            default:
-                return Color.purple
-        }
-    }
+
+
 
 
 struct NoteCell : View {
@@ -47,8 +33,9 @@ struct NoteCell : View {
                     .font(.headline)
                     
             Divider()
+            let emo = styleEmotions(rawValue: note.noteEmotion!)
             Text(note.noteEmotion!)
-                .foregroundColor(styleEmotions(note.noteEmotion ?? ""))
+                .foregroundColor(emo!.emotionColor)
                 .font(.subheadline)
                 .lineLimit(1)
                 .padding(10)
@@ -84,26 +71,38 @@ struct HomePage: View {
             }
         }
     }
-
+    
     
     var body: some View {
-            List {
-                Text("Testing:")
-                ForEach(allNotes) {note in
-                        VStack{
-                            NavigationLink(destination: NoteCell(note: note)) {
-                                VStack(alignment:.leading){
-                                    Text("Title: \(note.noteTitle ?? "")")
-                                    Text("Text: \(note.noteText ?? "")")
-                                        .lineLimit(3)
-                                                   } .background(styleEmotions(note.noteEmotion ?? ""))
-                                }
-                                
-                        }
-                }.onDelete(perform: deleteNote)
-            }
+        NavigationStack{
+            List(allNotes) { note in
+                NavigationLink(destination: NoteCell(note: note)) {
+                    VStack(alignment:.leading){
+                        Text("Title: \(note.noteTitle ?? "")")
+                        Text("Text: \(note.noteText ?? "")")
+                         .lineLimit(3)
+                         }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
+                    
+                    }
+            }.navigationTitle("My Notes")
+//            List {
+//                Text("Testing:")
+//                ForEach(allNotes) {note in
+//                    VStack{
+//                        NavigationLink(destination: NoteCell(note: note)) {
+//                            VStack(alignment:.leading){
+//                                Text("Title: \(note.noteTitle ?? "")")
+//                                Text("Text: \(note.noteText ?? "")")
+//                                    .lineLimit(3)
+//                            } .background(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
+//                        }
+//
+//                    }
+//                }.onDelete(perform: deleteNote)
+//            }
         }
     }
+}
 
 
 struct HomePage_Previews: PreviewProvider {

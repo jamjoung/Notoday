@@ -48,20 +48,16 @@ struct ContentView: View {
     @ViewBuilder
     var body: some View {
         if noteCreatedToday==false {
-            NavigationView{
+            NavigationStack{
                 VStack{
                     Text("Welcome")
-                    NavigationLink(destination: NotePage(), isActive: $toNote)
-                    {
-                        Button(action: {
-                            toNote = true
-                            
-                        }){
-                            Text("Create Note")
-                        }
-                        
+                    Button {
+                        toNote = true
+                    } label: {
+                        Text("Create Note")
                     }
-                    
+                }.navigationDestination(isPresented: $toNote) {
+                                  NotePage()
                 }
                 
             }
