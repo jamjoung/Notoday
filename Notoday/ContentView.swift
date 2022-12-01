@@ -8,46 +8,44 @@
 import SwiftUI
 import CoreData
 
-public var noteCreatedToday = false
+let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            return formatter
+        }()
 
 struct ContentView: View {
     @State private var toNote: Bool = false
+    @State private var toHome: Bool = false
+
+    @Environment(\.managedObjectContext) private var viewContext
     
-//    var req: Note {
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
-//        request.sortDescriptors = [NSSortDescriptor(key: "noteTimestamp", ascending:false)];
-//        request.fetchLimit=1
-//        let recentNote = request as? Note ?? Nil
-//        return recentNote
-//        }
-//
-//
-//    func checkToday() -> Bool{
-//        let dateFormatter: DateFormatter = {
-//            let formatter = DateFormatter()
-//            formatter.dateStyle = .medium
-//            return formatter
-//        }()
-//        let today = dateFormatter.string(from: Date())
-//
-//            if (dateFormatter.string(from: req.noteTimestamp!)) == today {
-//                noteCreatedToday = true
-//                print("already done!")
-//                return true
-//            }
-//            else{
-//                noteCreatedToday = false
-//                print("time to write !")
-//            }
-//
-//        return false
-//    }
-//
-   
+    @FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(key: "noteTimestamp", ascending: false)])
+    private var allNotes: FetchedResults<Note>
     
+    
+    func checkToday() -> Bool{
+        let today = dateFormatter.string(from: Date())
+        var lastNoteDate = ""
+        
+        if allNotes.last != nil {
+            lastNoteDate = dateFormatter.string(from: allNotes.last!.noteTimestamp!)
+            if today == lastNoteDate {
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        return false
+    }
+    
+
     @ViewBuilder
     var body: some View {
-        if noteCreatedToday==false {
+        
+        
+        if checkToday() == false{
             NavigationStack{
                 VStack{
                     Text("Welcome")
@@ -63,7 +61,19 @@ struct ContentView: View {
             }
         }
         else {
-            HomePage()
+            NavigationStack{
+                VStack{
+                    Text("You already wrote a note for today!")
+                    Button {
+                        toHome = true
+                    } label: {
+                        Text("View All Notes")
+                    }
+                }.navigationDestination(isPresented: $toHome) {
+                    HomePage()
+                }
+                
+            }
         }
     }
 }

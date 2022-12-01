@@ -105,9 +105,6 @@ struct NotePage: View {
             print(newNote.noteTitle!)
             print(newNote.noteEmotion!)
             print("Note saved.")
-            noteCreatedToday=true
-           
-            
         }
         catch {
             print(error.localizedDescription)

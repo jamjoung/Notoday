@@ -51,10 +51,10 @@ struct NoteCell : View {
 }
 
 struct HomePage: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @State private var noteText: String = "test"
     @State private var noteTitle: String = ""
-    
+    @Environment(\.managedObjectContext) private var viewContext
+
     @FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(key: "noteTimestamp", ascending: false)])
     private var allNotes: FetchedResults<Note>
     
