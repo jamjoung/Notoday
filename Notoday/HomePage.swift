@@ -75,32 +75,23 @@ struct HomePage: View {
     
     var body: some View {
         NavigationStack{
-            List(allNotes) { note in
-                NavigationLink(destination: NoteCell(note: note)) {
-                    VStack(alignment:.leading){
-                        Text("Title: \(note.noteTitle ?? "")")
-                        Text("Text: \(note.noteText ?? "")")
-                         .lineLimit(3)
-                         }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
-                    
-                    }
+            List {
+                ForEach(allNotes, id: \.self) {note in
+                    NavigationLink(destination: NoteCell(note: note)) {
+                        VStack(alignment:.leading){
+                            Text(note.noteTitle!)
+                                .fontWeight(.bold)
+                                .padding([.bottom, .trailing], 20)
+                            Text(note.noteText!)
+                                .lineLimit(3)
+                                .opacity(0.9)
+                        }
+                    }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
+                        
+                }.onDelete(perform: deleteNote)
             }.navigationTitle("My Notes")
-//            List {
-//                Text("Testing:")
-//                ForEach(allNotes) {note in
-//                    VStack{
-//                        NavigationLink(destination: NoteCell(note: note)) {
-//                            VStack(alignment:.leading){
-//                                Text("Title: \(note.noteTitle ?? "")")
-//                                Text("Text: \(note.noteText ?? "")")
-//                                    .lineLimit(3)
-//                            } .background(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
-//                        }
-//
-//                    }
-//                }.onDelete(perform: deleteNote)
-//            }
         }
+
     }
 }
 

@@ -57,7 +57,7 @@ struct ContentView: View {
                         Text("Create Note")
                     }
                 }.navigationDestination(isPresented: $toNote) {
-                                  NotePage()
+                    NotePage()
                 }
                 
             }
