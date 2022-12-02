@@ -9,48 +9,142 @@ import Foundation
 import SwiftUI
 import CoreData
 
-
-
-
+extension EditMode {
+    var title: String {
+        self == .active ? "Done" : "Edit"
+    }
+    
+    mutating func toggle() {
+        self = self == .active ? .inactive : .active
+    }
+}
 
 struct NoteCell : View {
-    
+    let emotions = ["Happy", "Satisfied", "Neutral", "Tired", "Upset"]
+
     @State var note: Note
+    //@State private var editable = false
+    //@Environment(\.editMode) private var editMode
+    @State var editMode: EditMode = .inactive
+
     
+    //@State var updatedIndex = 0
+    @State var updatedText = ""
+    @State var updatedEmotion = "Neutral"
+    @State var updatedTitle = ""
+ 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    //updatedIndex = find(emotions, note.noteEmotion)!
+
+    func updateNote() {
+        let existingNote = note ?? NSEntityDescription.insertNewObject(forEntityName: "Note", into: viewContext) as? Note
+        
+        existingNote!.noteID = UUID()
+        existingNote!.noteTitle = self.updatedTitle
+        existingNote!.noteText = self.updatedText
+        existingNote!.noteTimestamp = Date()
+        existingNote!.noteEmotion = self.updatedEmotion
+        do {
+            try viewContext.save()
+            print("Note updated.")
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    init(note: Note) {
+        _note = State(initialValue: note)
+        //_editable = State(initialValue: false)
+        _editMode = State(initialValue: EditMode.inactive)
+        _updatedTitle = State(initialValue: note.noteTitle!)
+        _updatedText = State(initialValue: note.noteText!)
+        _updatedEmotion = State(initialValue: note.noteEmotion!)
+        
+        }
+    
+    
+    private var editButton: some View {
+        if editMode == .inactive {
+                    return Button(action: {
+                        self.editMode.toggle()
+                    }) {
+                        Text(self.editMode.title)
+                    }
+                }
+        else {
+                    return Button(action: {
+                        self.editMode.toggle()
+                        updateNote()
+                    }) {
+                        Text(self.editMode.title)
+                    }
+                }
+        }
+    
     var body: some View {
         return VStack(spacing: 20) {
-            
+            HStack{
                 Text(dateFormatter.string(from: note.noteTimestamp!))
                     .font(.footnote)
-                    
+            }
+            
+            if editMode == .active {
+                TextField("", text: $updatedTitle)
+                    .fixedSize(horizontal: true, vertical: true)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                Divider()
+                
+                Picker(selection: $updatedEmotion, label: Text("Emotion")){
+                        ForEach(emotions, id: \.self){ Text($0)}
+                    }.listRowBackground(styleEmotions(rawValue: updatedEmotion)!.emotionColor)
+                
+                Divider()
+                TextField("", text: $updatedText)
+                    .fixedSize(horizontal: true, vertical: true)
+                    .font(.subheadline)
+                    .padding(10)
+                    .multilineTextAlignment(.center)
+                Spacer()
+                
+            }
+            
+            else {
                 Text(note.noteTitle!)
                     .font(.headline)
-                    
-            Divider()
-            let emo = styleEmotions(rawValue: note.noteEmotion!)
-            Text(note.noteEmotion!)
-                .foregroundColor(emo!.emotionColor)
-                .font(.subheadline)
-                .lineLimit(1)
-                .padding(10)
-            Divider()
-            Text(note.noteText!)
-                .font(.subheadline)
-                .padding(10)
-            Spacer()
+                Divider()
+                let emo = styleEmotions(rawValue: note.noteEmotion!)
+                Text(note.noteEmotion!)
+                    .background(emo!.emotionColor)
+                    .cornerRadius(10)
+                    .padding()
+                    .font(.subheadline)
+                    .lineLimit(1)
+                Divider()
+                Text(note.noteText!)
+                    .font(.subheadline)
+                    .padding(10)
+                Spacer()
+            }
         }
-           
-        
+        .environment(\.editMode, self.$editMode)
+        .toolbar {
+            ToolbarItem() {
+                editButton
+            }
+        }
     }
 }
 
 struct HomePage: View {
+    
     @State private var noteText: String = "test"
     @State private var noteTitle: String = ""
     @Environment(\.managedObjectContext) private var viewContext
@@ -87,6 +181,7 @@ struct HomePage: View {
                                 .opacity(0.9)
                         }
                     }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
+                    .navigationBarBackButtonHidden(true)
                         
                 }.onDelete(perform: deleteNote)
             }.navigationTitle("My Notes")

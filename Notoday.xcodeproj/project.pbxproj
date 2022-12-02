@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81033685291C25FF00E55A83 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81033684291C25FF00E55A83 /* LandingPage.swift */; };
+		81064B5829395969008D7BF2 /* EditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064B5729395969008D7BF2 /* EditPage.swift */; };
 		813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */; };
 		8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */; };
 		81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		81033684291C25FF00E55A83 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
+		81064B5729395969008D7BF2 /* EditPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPage.swift; sourceTree = "<group>"; };
 		813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
 		813C1B202922D5500090D747 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				81DE3FF52918DEDE00349EC5 /* ContentView.swift */,
 				81033684291C25FF00E55A83 /* LandingPage.swift */,
 				81DE40262918E48F00349EC5 /* HomePage.swift */,
+				81064B5729395969008D7BF2 /* EditPage.swift */,
 				81DE40282918E4CC00349EC5 /* NotePage.swift */,
 				81DE3FF72918DEEA00349EC5 /* Assets.xcassets */,
 				81DE3FF92918DEEA00349EC5 /* Preview Content */,
@@ -285,6 +288,7 @@
 				81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */,
 				81DE40292918E4CC00349EC5 /* NotePage.swift in Sources */,
 				81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */,
+				81064B5829395969008D7BF2 /* EditPage.swift in Sources */,
 				81DE40272918E49000349EC5 /* HomePage.swift in Sources */,
 				81033685291C25FF00E55A83 /* LandingPage.swift in Sources */,
 				813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */,

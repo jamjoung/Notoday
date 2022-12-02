@@ -44,8 +44,7 @@ struct ContentView: View {
     @ViewBuilder
     var body: some View {
         
-        
-        if checkToday() == false{
+        if checkToday() == false{ //usually false, change!!
             NavigationStack{
                 VStack{
                     Text("Welcome")
@@ -57,7 +56,6 @@ struct ContentView: View {
                 }.navigationDestination(isPresented: $toNote) {
                     NotePage()
                 }
-                
             }
         }
         else {

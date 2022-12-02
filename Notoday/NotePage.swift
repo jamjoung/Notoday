@@ -76,12 +76,12 @@ enum styleEmotions: String, CaseIterable{
     }
 }
 
+
 struct NotePage: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var selectedEmotion = "Neutral"
-    @State var selectedIndex = 0
     @State var text = ""
     @State var title = ""
     @State private var goHome: Bool = false
@@ -91,7 +91,6 @@ struct NotePage: View {
     
     let emotions = ["Happy", "Satisfied", "Neutral", "Tired", "Upset"]
     
-    
 
     func saveNote() {
         let newNote = Note(context:viewContext)
@@ -99,7 +98,7 @@ struct NotePage: View {
         newNote.noteTitle = self.title
         newNote.noteText = self.text
         newNote.noteTimestamp = Date()
-        newNote.noteEmotion = self.emotions[selectedIndex]
+        newNote.noteEmotion = self.selectedEmotion
         do {
             try viewContext.save()
             print(newNote.noteTitle!)
@@ -118,10 +117,9 @@ struct NotePage: View {
                         TextField("Enter Title", text: $title)
                     }
                         Section(header: Text("Select Emotion")){
-                            Picker(selection: $selectedIndex, label: Text("Emotion")){
-                                ForEach(0 ..< emotions.count){ Text(self.emotions[$0]).tag($0)
-                                }
-                            }.listRowBackground(styleEmotions(rawValue: emotions[selectedIndex])!.emotionColor)
+                            Picker(selection: $selectedEmotion, label: Text("Emotion")){
+                                ForEach(emotions, id: \.self){ Text($0)}
+                            }.listRowBackground(styleEmotions(rawValue: selectedEmotion)!.emotionColor)
                         }
                     
                     TextField("Write about your day!", text: $text, axis: .vertical)
@@ -136,7 +134,7 @@ struct NotePage: View {
                 }
             }.navigationDestination(isPresented: $goHome) {
                               HomePage()
-                }
+                }.navigationBarBackButtonHidden(true)
             }
     }
 
