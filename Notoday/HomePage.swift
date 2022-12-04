@@ -44,13 +44,14 @@ struct NoteCell : View {
     //updatedIndex = find(emotions, note.noteEmotion)!
 
     func updateNote() {
-        let existingNote = note ?? NSEntityDescription.insertNewObject(forEntityName: "Note", into: viewContext) as? Note
+        let existingNote = note
+        //?? NSEntityDescription.insertNewObject(forEntityName: "Note", into: viewContext) as? Note
         
-        existingNote!.noteID = UUID()
-        existingNote!.noteTitle = self.updatedTitle
-        existingNote!.noteText = self.updatedText
-        existingNote!.noteTimestamp = Date()
-        existingNote!.noteEmotion = self.updatedEmotion
+        existingNote.noteID = UUID()
+        existingNote.noteTitle = self.updatedTitle
+        existingNote.noteText = self.updatedText
+        existingNote.noteTimestamp = Date()
+        existingNote.noteEmotion = self.updatedEmotion
         do {
             try viewContext.save()
             print("Note updated.")
@@ -96,22 +97,25 @@ struct NoteCell : View {
             }
             
             if editMode == .active {
-                TextField("", text: $updatedTitle)
-                    .fixedSize(horizontal: true, vertical: true)
+                TextField("", text: $updatedTitle, axis: .vertical)
+                    .lineLimit(2, reservesSpace:true)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                    .padding()
+
                 Divider()
                 
                 Picker(selection: $updatedEmotion, label: Text("Emotion")){
                         ForEach(emotions, id: \.self){ Text($0)}
-                    }.listRowBackground(styleEmotions(rawValue: updatedEmotion)!.emotionColor)
+                }.padding()
+                .listRowBackground(styleEmotions(rawValue: updatedEmotion)!.emotionColor)
                 
                 Divider()
-                TextField("", text: $updatedText)
-                    .fixedSize(horizontal: true, vertical: true)
+                TextField("", text: $updatedText, axis: .vertical)
+                    .lineLimit(15, reservesSpace:true)
                     .font(.subheadline)
-                    .padding(10)
-                    .multilineTextAlignment(.center)
+                    .padding()
+                    
                 Spacer()
                 
             }

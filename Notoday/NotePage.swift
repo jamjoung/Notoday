@@ -70,8 +70,6 @@ enum styleEmotions: String, CaseIterable{
             return Color.tiredColor
         case .Upset:
             return Color.upsetColor
-        default:
-            return Color.neutralColor
         }
     }
 }
