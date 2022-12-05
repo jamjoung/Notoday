@@ -46,11 +46,10 @@ struct NoteCell : View {
     func updateNote() {
         let existingNote = note
         //?? NSEntityDescription.insertNewObject(forEntityName: "Note", into: viewContext) as? Note
-        
+        //don't update creation date, add updated date one day?
         existingNote.noteID = UUID()
         existingNote.noteTitle = self.updatedTitle
         existingNote.noteText = self.updatedText
-        existingNote.noteTimestamp = Date()
         existingNote.noteEmotion = self.updatedEmotion
         do {
             try viewContext.save()

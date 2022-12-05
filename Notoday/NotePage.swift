@@ -42,11 +42,11 @@ import CoreData
 //}
 
 extension Color {
-    static let happyColor = Color(red: 255/255.0, green: 219/255.0, blue: 112/255.0)
-    static let satisfiedColor = Color(red: 153/255.0, green: 217/255.0, blue: 140/255.0)
-    static let neutralColor = Color(red: 82/255.0, green: 182/255.0, blue: 154/255.0)
-    static let tiredColor = Color(red: 22/255.0, green: 138/255.0, blue: 173/255.0)
-    static let upsetColor = Color(red: 35/255.0, green: 111/255.0, blue: 168/255.0)
+    static let happyColor = Color(red: 255/255, green: 153/255, blue: 51/255) // Pastel orange
+    static let satisfiedColor = Color(red: 255/255, green: 204/255, blue: 153/255) // Peach
+    static let neutralColor = Color(red: 240/255, green: 230/255, blue: 140/255) // Light green
+    static let tiredColor = Color(red: 153/255, green: 204/255, blue: 255/255) // Light blue
+    static let upsetColor = Color(red: 102/255, green: 153/255, blue: 255/255) // Pastel blue
 }
 
 
