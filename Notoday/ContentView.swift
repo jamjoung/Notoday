@@ -8,81 +8,116 @@
 import SwiftUI
 import CoreData
 
+let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            return formatter
+        }()
+
 struct ContentView: View {
+    @State private var toNote: Bool = false
+    @State private var toHome: Bool = false
+    @State private var checkDate: Bool = false
+    
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+    @FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(key: "noteTimestamp", ascending: true)])
+    private var allNotes: FetchedResults<Note>
+    
+    
+    func checkToday() -> Bool{
+        let today = dateFormatter.string(from: Date())
+        var lastNoteDate = ""
+        
+        if allNotes.last != nil {
+            lastNoteDate = dateFormatter.string(from: allNotes.last!.noteTimestamp!)
+            if today == lastNoteDate {
+                print(today)
+                print(lastNoteDate)
+                return true
+            }
+            else{
+                print("not match??")
+                print(today)
+                print(lastNoteDate)
+                return false
+            }
+        }
+        return false
+    }
+    //    init() {
+    //        checkDate = checkToday()
+    //    }
+    
+    @ViewBuilder
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        NavigationStack{
+            VStack{
+                if checkDate==false{
+                    Text("Welcome")
+                    Button {
+                        toNote = true
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text("Create Note")
+                    }.navigationDestination(isPresented: $toNote) {
+                        NotePage()
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                else {
+                    Text("You already wrote a note for today!")
+                    Button {
+                        toHome = true
+                    } label: {
+                        Text("View All Notes")
+                    }.navigationDestination(isPresented: $toHome) {
+                        HomePage()
                     }
                 }
+            }.onAppear(){
+                if (checkToday() == true) {
+                    checkDate = true
+                }
+                else {
+                    checkDate = false
+                }
             }
-            Text("Select an item")
-        }
-    }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            //        if checkDate == false{ //usually false, change!!
+            //            NavigationStack{
+            //                VStack{
+            //                    Text("Welcome")
+            //                    Button {
+            //                        toNote = true
+            //                    } label: {
+            //                        Text("Create Note")
+            //                    }
+            //                }.navigationDestination(isPresented: $toNote) {
+            //                    NotePage()
+            //                }
+            //            }
+            //        }
+            //        else {
+            //            NavigationStack{
+            //                VStack{
+            //                    Text("You already wrote a note for today!")
+            //                    Button {
+            //                        toHome = true
+            //                    } label: {
+            //                        Text("View All Notes")
+            //                    }
+            //                }.navigationDestination(isPresented: $toHome) {
+            //                    HomePage()
+            //                }
+            //
+            //            }
+            //        }
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationView{
+            ContentView()
+        }
     }
 }

@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81033685291C25FF00E55A83 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81033684291C25FF00E55A83 /* LandingPage.swift */; };
+		81064B5829395969008D7BF2 /* EditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064B5729395969008D7BF2 /* EditPage.swift */; };
+		813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */; };
+		8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */; };
 		81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */; };
 		81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FF52918DEDE00349EC5 /* ContentView.swift */; };
 		81DE3FF82918DEEA00349EC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81DE3FF72918DEEA00349EC5 /* Assets.xcassets */; };
 		81DE3FFB2918DEEA00349EC5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81DE3FFA2918DEEA00349EC5 /* Preview Assets.xcassets */; };
-		81DE3FFD2918DEEA00349EC5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FFC2918DEEA00349EC5 /* Persistence.swift */; };
-		81DE40002918DEEA00349EC5 /* Notoday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81DE3FFE2918DEEA00349EC5 /* Notoday.xcdatamodeld */; };
 		81DE400A2918DEEC00349EC5 /* NotodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE40092918DEEC00349EC5 /* NotodayTests.swift */; };
 		81DE40142918DEEC00349EC5 /* NotodayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE40132918DEEC00349EC5 /* NotodayUITests.swift */; };
 		81DE40162918DEEC00349EC5 /* NotodayUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE40152918DEEC00349EC5 /* NotodayUITestsLaunchTests.swift */; };
+		81DE40272918E49000349EC5 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE40262918E48F00349EC5 /* HomePage.swift */; };
+		81DE40292918E4CC00349EC5 /* NotePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE40282918E4CC00349EC5 /* NotePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,18 +40,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81033684291C25FF00E55A83 /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
+		81064B5729395969008D7BF2 /* EditPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPage.swift; sourceTree = "<group>"; };
+		813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
+		813C1B202922D5500090D747 /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
+		8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		81DE3FF02918DEDE00349EC5 /* Notoday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notoday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotodayApp.swift; sourceTree = "<group>"; };
 		81DE3FF52918DEDE00349EC5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		81DE3FF72918DEEA00349EC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81DE3FFA2918DEEA00349EC5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		81DE3FFC2918DEEA00349EC5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		81DE3FFF2918DEEA00349EC5 /* Notoday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notoday.xcdatamodel; sourceTree = "<group>"; };
 		81DE40052918DEEC00349EC5 /* NotodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DE40092918DEEC00349EC5 /* NotodayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotodayTests.swift; sourceTree = "<group>"; };
 		81DE400F2918DEEC00349EC5 /* NotodayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotodayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DE40132918DEEC00349EC5 /* NotodayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotodayUITests.swift; sourceTree = "<group>"; };
 		81DE40152918DEEC00349EC5 /* NotodayUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotodayUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		81DE40262918E48F00349EC5 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		81DE40282918E4CC00349EC5 /* NotePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8148FE41291B7BCE004D8547 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8148FE42291B7BF5004D8547 /* CoreDataHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		81DE3FE72918DEDD00349EC5 = {
 			isa = PBXGroup;
 			children = (
@@ -99,11 +116,15 @@
 			isa = PBXGroup;
 			children = (
 				81DE3FF32918DEDE00349EC5 /* NotodayApp.swift */,
+				8148FE41291B7BCE004D8547 /* Helpers */,
 				81DE3FF52918DEDE00349EC5 /* ContentView.swift */,
+				81033684291C25FF00E55A83 /* LandingPage.swift */,
+				81DE40262918E48F00349EC5 /* HomePage.swift */,
+				81064B5729395969008D7BF2 /* EditPage.swift */,
+				81DE40282918E4CC00349EC5 /* NotePage.swift */,
 				81DE3FF72918DEEA00349EC5 /* Assets.xcassets */,
-				81DE3FFC2918DEEA00349EC5 /* Persistence.swift */,
-				81DE3FFE2918DEEA00349EC5 /* Notoday.xcdatamodeld */,
 				81DE3FF92918DEEA00349EC5 /* Preview Content */,
+				813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */,
 			);
 			path = Notoday;
 			sourceTree = "<group>";
@@ -263,10 +284,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81DE3FFD2918DEEA00349EC5 /* Persistence.swift in Sources */,
+				8148FE43291B7BF5004D8547 /* CoreDataHelper.swift in Sources */,
 				81DE3FF62918DEDE00349EC5 /* ContentView.swift in Sources */,
-				81DE40002918DEEA00349EC5 /* Notoday.xcdatamodeld in Sources */,
+				81DE40292918E4CC00349EC5 /* NotePage.swift in Sources */,
 				81DE3FF42918DEDE00349EC5 /* NotodayApp.swift in Sources */,
+				81064B5829395969008D7BF2 /* EditPage.swift in Sources */,
+				81DE40272918E49000349EC5 /* HomePage.swift in Sources */,
+				81033685291C25FF00E55A83 /* LandingPage.swift in Sources */,
+				813C1B212922D5500090D747 /* Notoday.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,12 +618,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		81DE3FFE2918DEEA00349EC5 /* Notoday.xcdatamodeld */ = {
+		813C1B1E2922D5500090D747 /* Notoday.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				81DE3FFF2918DEEA00349EC5 /* Notoday.xcdatamodel */,
+				813C1B1F2922D5500090D747 /* Notoday.xcdatamodel */,
+				813C1B202922D5500090D747 /* NoteModel.xcdatamodel */,
 			);
-			currentVersion = 81DE3FFF2918DEEA00349EC5 /* Notoday.xcdatamodel */;
+			currentVersion = 813C1B202922D5500090D747 /* NoteModel.xcdatamodel */;
 			path = Notoday.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
