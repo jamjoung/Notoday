@@ -21,18 +21,18 @@ extension EditMode {
 
 struct NoteCell : View {
     let emotions = ["Happy", "Satisfied", "Neutral", "Tired", "Upset"]
-
+    
     @State var note: Note
     //@State private var editable = false
     //@Environment(\.editMode) private var editMode
     @State var editMode: EditMode = .inactive
-
+    
     
     //@State var updatedIndex = 0
     @State var updatedText = ""
     @State var updatedEmotion = "Neutral"
     @State var updatedTitle = ""
- 
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -42,7 +42,7 @@ struct NoteCell : View {
     @Environment(\.managedObjectContext) private var viewContext
     
     //updatedIndex = find(emotions, note.noteEmotion)!
-
+    
     func updateNote() {
         let existingNote = note
         //?? NSEntityDescription.insertNewObject(forEntityName: "Note", into: viewContext) as? Note
@@ -67,26 +67,26 @@ struct NoteCell : View {
         _updatedText = State(initialValue: note.noteText!)
         _updatedEmotion = State(initialValue: note.noteEmotion!)
         
-        }
+    }
     
     
     private var editButton: some View {
         if editMode == .inactive {
-                    return Button(action: {
-                        self.editMode.toggle()
-                    }) {
-                        Text(self.editMode.title)
-                    }
-                }
-        else {
-                    return Button(action: {
-                        self.editMode.toggle()
-                        updateNote()
-                    }) {
-                        Text(self.editMode.title)
-                    }
-                }
+            return Button(action: {
+                self.editMode.toggle()
+            }) {
+                Text(self.editMode.title)
+            }
         }
+        else {
+            return Button(action: {
+                self.editMode.toggle()
+                updateNote()
+            }) {
+                Text(self.editMode.title)
+            }
+        }
+    }
     
     var body: some View {
         return VStack(spacing: 20) {
@@ -101,20 +101,20 @@ struct NoteCell : View {
                     .font(.headline)
                     .multilineTextAlignment(.center)
                     .padding()
-
+                
                 Divider()
                 
                 Picker(selection: $updatedEmotion, label: Text("Emotion")){
-                        ForEach(emotions, id: \.self){ Text($0)}
+                    ForEach(emotions, id: \.self){ Text($0)}
                 }.padding()
-                .listRowBackground(styleEmotions(rawValue: updatedEmotion)!.emotionColor)
+                    .listRowBackground(styleEmotions(rawValue: updatedEmotion)!.emotionColor)
                 
                 Divider()
                 TextField("", text: $updatedText, axis: .vertical)
                     .lineLimit(15, reservesSpace:true)
                     .font(.subheadline)
                     .padding()
-                    
+                
                 Spacer()
                 
             }
@@ -125,9 +125,9 @@ struct NoteCell : View {
                 Divider()
                 let emo = styleEmotions(rawValue: note.noteEmotion!)
                 Text(note.noteEmotion!)
+                    .padding(5)
                     .background(emo!.emotionColor)
-                    .cornerRadius(10)
-                    .padding()
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .font(.subheadline)
                     .lineLimit(1)
                 Divider()
@@ -136,13 +136,14 @@ struct NoteCell : View {
                     .padding(10)
                 Spacer()
             }
-        }
-        .environment(\.editMode, self.$editMode)
-        .toolbar {
-            ToolbarItem() {
-                editButton
+        }.background(Color.bgColor)
+            .environment(\.editMode, self.$editMode)
+            .toolbar {
+                ToolbarItem() {
+                    editButton
+                }
             }
-        }
+        
     }
 }
 
@@ -151,7 +152,7 @@ struct HomePage: View {
     @State private var noteText: String = "test"
     @State private var noteTitle: String = ""
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(key: "noteTimestamp", ascending: false)])
     private var allNotes: FetchedResults<Note>
     
@@ -175,21 +176,37 @@ struct HomePage: View {
             List {
                 ForEach(allNotes, id: \.self) {note in
                     NavigationLink(destination: NoteCell(note: note)) {
-                        VStack(alignment:.leading){
-                            Text(note.noteTitle!)
-                                .fontWeight(.bold)
-                                .padding([.bottom, .trailing], 20)
-                            Text(note.noteText!)
-                                .lineLimit(3)
-                                .opacity(0.9)
+                        HStack{
+                            VStack{
+                                Text(note.noteTimestamp!.formatted(.dateTime.month()))
+                                    .fontWeight(.bold)
+                                
+                                Text(note.noteTimestamp!.formatted(.dateTime.day()))
+                                
+                            }
+                            .padding()
+                            .background(Color.bgColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .padding(.trailing, 18)
+                            
+                            VStack(alignment:.leading){
+                                Text(note.noteTitle!)
+                                    .lineLimit(2)
+                                    .fontWeight(.bold)
+                                    .padding([.bottom, .trailing], 15)
+                                Text(note.noteText!)
+                                    .lineLimit(3)
+                                    .opacity(0.9)
+                            }
                         }
-                    }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
-                    .navigationBarBackButtonHidden(true)
                         
+                    }.listRowBackground(styleEmotions(rawValue: note.noteEmotion!)!.emotionColor)
+                        .navigationBarBackButtonHidden(true)
+                    
                 }.onDelete(perform: deleteNote)
             }.navigationTitle("My Notes")
-        }
-
+        }.background(Color.bgColor)
+        
     }
 }
 

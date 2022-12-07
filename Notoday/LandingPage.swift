@@ -15,9 +15,11 @@ struct LandingPage: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var nextPage: Bool = false
-
+    
     var body: some View {
         NavigationStack{
+            
+            
             VStack{
                 Text("Welcome back, user!")
                 Button {
@@ -26,10 +28,8 @@ struct LandingPage: View {
                     Text("Create Note")
                 }
             }.navigationDestination(isPresented: $nextPage) {
-                              NotePage()
+                NotePage()
             }
-            
-            
         }
     }
 }

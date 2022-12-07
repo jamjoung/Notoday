@@ -9,11 +9,16 @@ import SwiftUI
 import CoreData
 
 let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            return formatter
-        }()
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter
+}()
 
+extension Font {
+    static let handWrittenFont = Font.custom("BradleyHandITCTT-Bold", size: 60.0)
+    static let captionFont = Font.custom("BradleyHandITCTT-Bold", size: 18.0)
+    
+}
 struct ContentView: View {
     @State private var toNote: Bool = false
     @State private var toHome: Bool = false
@@ -52,65 +57,57 @@ struct ContentView: View {
     @ViewBuilder
     var body: some View {
         NavigationStack{
-            VStack{
-                if checkDate==false{
-                    Text("Welcome")
-                    Button {
-                        toNote = true
-                    } label: {
-                        Text("Create Note")
-                    }.navigationDestination(isPresented: $toNote) {
-                        NotePage()
+            ZStack(alignment: .top){
+                Image("landingBG")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                
+                VStack{
+                    Text("Notoday")
+                        .padding(.top, 320)
+                        .font(Font.handWrittenFont)
+                    
+                    if checkDate==false{
+                        Button {
+                            toNote = true
+                        } label: {
+                            Text("Create Note")
+                                .foregroundColor(Color.upsetColor)
+                        }.navigationDestination(isPresented: $toNote) {
+                            NotePage()
+                        }
+                        .padding()
+                        .padding([.leading, .trailing], 20)
+                        .background(Color.satisfiedColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
                     }
-                }
-                else {
-                    Text("You already wrote a note for today!")
-                    Button {
-                        toHome = true
-                    } label: {
-                        Text("View All Notes")
-                    }.navigationDestination(isPresented: $toHome) {
-                        HomePage()
+                    else {
+                        Text("You already wrote a note for today!")
+                            .font(Font.captionFont)
+                        
+                        Button {
+                            toHome = true
+                        } label: {
+                            Text("View All Notes")
+                                .foregroundColor(Color.upsetColor)
+                        }.navigationDestination(isPresented: $toHome) {
+                            HomePage()
+                        }
+                        .padding()
+                        .padding([.leading, .trailing], 20)
+                        .background(Color.satisfiedColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
                     }
-                }
-            }.onAppear(){
-                if (checkToday() == true) {
-                    checkDate = true
-                }
-                else {
-                    checkDate = false
+                }.onAppear(){
+                    if (checkToday() == true) {
+                        checkDate = true
+                    }
+                    else {
+                        checkDate = false
+                    }
                 }
             }
-
-            //        if checkDate == false{ //usually false, change!!
-            //            NavigationStack{
-            //                VStack{
-            //                    Text("Welcome")
-            //                    Button {
-            //                        toNote = true
-            //                    } label: {
-            //                        Text("Create Note")
-            //                    }
-            //                }.navigationDestination(isPresented: $toNote) {
-            //                    NotePage()
-            //                }
-            //            }
-            //        }
-            //        else {
-            //            NavigationStack{
-            //                VStack{
-            //                    Text("You already wrote a note for today!")
-            //                    Button {
-            //                        toHome = true
-            //                    } label: {
-            //                        Text("View All Notes")
-            //                    }
-            //                }.navigationDestination(isPresented: $toHome) {
-            //                    HomePage()
-            //                }
-            //
-            //            }
-            //        }
         }
     }
 }

@@ -42,17 +42,19 @@ import CoreData
 //}
 
 extension Color {
-    static let happyColor = Color(red: 255/255, green: 153/255, blue: 51/255) // Pastel orange
-    static let satisfiedColor = Color(red: 255/255, green: 204/255, blue: 153/255) // Peach
-    static let neutralColor = Color(red: 240/255, green: 230/255, blue: 140/255) // Light green
-    static let tiredColor = Color(red: 153/255, green: 204/255, blue: 255/255) // Light blue
-    static let upsetColor = Color(red: 102/255, green: 153/255, blue: 255/255) // Pastel blue
+    static let happyColor = Color(red: 242/255, green: 187/255, blue: 201/255) // Pastel orange
+    static let satisfiedColor = Color(red: 242/255, green: 206/255, blue: 216/255) // Peach
+    static let neutralColor = Color(red: 233/255, green: 225/255, blue: 234/255) // Light green
+    static let tiredColor = Color(red: 174/255, green: 179/255, blue: 218/255) // Light blue
+    static let upsetColor = Color(red: 96/255, green: 106/255, blue: 169/255) // Pastel blue
+    static let bgColor = Color(red: 243/255, green: 242/255, blue: 248/255) // Pastel blue
+    
 }
 
 
 
 enum styleEmotions: String, CaseIterable{
-//        let emotion = Emotion(rawValue: value)
+    //        let emotion = Emotion(rawValue: value)
     case Happy
     case Satisfied
     case Neutral
@@ -89,7 +91,7 @@ struct NotePage: View {
     
     let emotions = ["Happy", "Satisfied", "Neutral", "Tired", "Upset"]
     
-
+    
     func saveNote() {
         let newNote = Note(context:viewContext)
         newNote.noteID = UUID()
@@ -109,32 +111,41 @@ struct NotePage: View {
     }
     
     var body: some View {
-            VStack{
-                Form{
-                    Section(header: Text("Note Title")){
-                        TextField("Enter Title", text: $title)
-                    }
-                        Section(header: Text("Select Emotion")){
-                            Picker(selection: $selectedEmotion, label: Text("Emotion")){
-                                ForEach(emotions, id: \.self){ Text($0)}
-                            }.listRowBackground(styleEmotions(rawValue: selectedEmotion)!.emotionColor)
-                        }
-                    
-                    TextField("Write about your day!", text: $text, axis: .vertical)
-                        .lineLimit(15, reservesSpace:true)
+        VStack{
+            Form{
+                Section(header: Text("Note Title")){
+                    TextField("Enter Title", text: $title)
+                }
+                Section(header: Text("Select Emotion")){
+                    Picker(selection: $selectedEmotion, label: Text("Emotion")){
+                        ForEach(emotions, id: \.self){ Text($0)}
+                    }.listRowBackground(styleEmotions(rawValue: selectedEmotion)!.emotionColor)
                 }
                 
-                Button {
-                    goHome = true
-                    saveNote()
-                } label: {
-                    Text("Save Note")
-                }
-            }.navigationDestination(isPresented: $goHome) {
-                              HomePage()
-                }.navigationBarBackButtonHidden(true)
+                TextField("Write about your day!", text: $text, axis: .vertical)
+                    .lineLimit(15, reservesSpace:true)
+            }
+            
+            Button {
+                goHome = true
+                saveNote()
+            } label: {
+                Text("Save Note")
+                    .foregroundColor(Color.black)
+            }
+            .navigationBarBackButtonHidden(true)
+            .padding()
+            .padding([.leading, .trailing], 20)
+            .background(styleEmotions(rawValue: selectedEmotion)!.emotionColor)
+            .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
+            
+        }.background(Color.bgColor)
+            .navigationDestination(isPresented: $goHome) {
+                HomePage()
             }
     }
+    
+}
 
 
 struct NotePage_Previews: PreviewProvider {
